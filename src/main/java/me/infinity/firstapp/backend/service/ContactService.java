@@ -30,6 +30,13 @@ public class ContactService {
         return contactRepository.findAll();
     }
 
+    public List<Contact> findAll(String filterText) {
+        if(filterText == null || filterText.isEmpty())
+            return contactRepository.findAll();
+
+        return contactRepository.search(filterText);
+    }
+
     public long count() {
         return contactRepository.count();
     }
