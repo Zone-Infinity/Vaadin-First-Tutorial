@@ -1,4 +1,4 @@
-package me.infinity.firstapp.ui;
+package me.infinity.firstapp.ui.views.list;
 
 
 import com.vaadin.flow.component.ComponentEvent;
@@ -21,15 +21,15 @@ import java.util.List;
 
 
 public class ContactForm extends FormLayout {
-    TextField firstName = new TextField("First name");
-    TextField lastName = new TextField("Last name");
-    EmailField email = new EmailField("Email");
-    ComboBox<Contact.Status> status = new ComboBox<>("Status");
-    ComboBox<Company> company = new ComboBox<>("Company");
+    public TextField firstName = new TextField("First name");
+    public TextField lastName = new TextField("Last name");
+    public EmailField email = new EmailField("Email");
+    public ComboBox<Contact.Status> status = new ComboBox<>("Status");
+    public ComboBox<Company> company = new ComboBox<>("Company");
 
-    Button save = new Button("Save");
-    Button delete = new Button("Delete");
-    Button close = new Button("Cancel");
+    public Button save = new Button("Save");
+    public Button delete = new Button("Delete");
+    public Button close = new Button("Cancel");
 
     Binder<Contact> binder = new BeanValidationBinder<>(Contact.class);
 

@@ -1,30 +1,32 @@
-package me.infinity.firstapp.ui;
+package me.infinity.firstapp.ui.views.list;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import me.infinity.firstapp.backend.entity.Company;
 import me.infinity.firstapp.backend.entity.Contact;
 import me.infinity.firstapp.backend.service.CompanyService;
 import me.infinity.firstapp.backend.service.ContactService;
+import me.infinity.firstapp.ui.MainLayout;
 
 @SuppressWarnings("unused")
-@Route("/contacts")
+@Route(value = "", layout = MainLayout.class)
+@PageTitle("Contacts")
 @CssImport("./styles/shared-styles.css")
-public class MainView extends VerticalLayout {
-    Grid<Contact> grid = new Grid<>(Contact.class);
+public class ListView extends VerticalLayout {
+    public Grid<Contact> grid = new Grid<>(Contact.class);
     TextField filterText = new TextField();
-    private final ContactService contactService;
-    private final ContactForm form;
+    public ContactService contactService;
+    public ContactForm form;
 
-    public MainView(ContactService contactService,
+    public ListView(ContactService contactService,
                     CompanyService companyService) {
         this.contactService = contactService;
         addClassName("list-view");
@@ -40,9 +42,7 @@ public class MainView extends VerticalLayout {
         content.addClassName("content");
         content.setSizeFull();
 
-        final H1 contacts = new H1("Contacts");
-
-        add(contacts, getToolBar(), content);
+        add(getToolBar(), content);
         updateList();
         closeEditor();
     }
